@@ -1,0 +1,56 @@
+{% comment %}
+    This template rander Error messages and print them in 
+    Bootstrap class="alert-danger"
+{% endcomment %}
+
+{% if form.errors %} {# if form errors do ... #}
+    <div class="alert alert-danger" role="alert">
+        <div>
+        <!-- Display Form errors  -->
+        {% for field, error in form.errors.items %} {# loop over fields and error messages #}
+            {% if field != '__all__' %} {# if fields name are available do ... #}                
+                <div class="form_errors_messages">
+                    {{ field.label_tag }} {{ error }}
+                </div>
+            {% else %} {# if fields name not available do ... #}
+                {% for err in error %}
+                    <div class="form_errors_messages">
+                        {{ field.label_tag }} {{ err }}
+                    </div>
+                    {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                {% endfor field %}
+            {% endif %} {# END if fields name #}
+        {% endfor errors %} {# end loop over fields and error messages #}
+        </div>
+</div> 
+{% endif %} {# end if form errors #}
+<!-- Display View messages  -->
+{% if messages %} {# if messages do ... #}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger" role="alert">
+                    {{ message }}
+            </div>  
+        {% endif %} {# end if ERROR ... #}
+
+        {% if message.tags == 'success' %}
+            <div class="alert alert-success" role="alert"> 
+                {{ message }}
+            </div>
+        {% endif %} {# end if SUCCESS ... #}
+
+        {% if message.tags == 'info' %}
+            <div class="alert alert-info" role="alert">
+                    {{ message }}
+            </div>
+        {% endif %} {# end if INFO ... #}
+    
+        {% if message.tags == 'warning' %}
+            <div class="alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {% endif %} {# end if WARNING ... #}
+    {% endfor %}
+{% endif %} {# end if messages #}

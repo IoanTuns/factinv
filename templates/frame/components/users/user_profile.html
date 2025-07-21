@@ -1,0 +1,52 @@
+{% load i18n static %} 
+{% load widget_tweaks %}
+<div class="col-lg-10 col-md-10 col-sm-10 ml-auto mr-auto">
+  <form method="POST" action="{% url 'accounts:myaccount' %}">
+     {% csrf_token %}
+     <div class="card">
+        <div class="card-body">
+           {% if gargs.new_user_msg %}
+           <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="material-icons">close</i>
+              </button>
+              <span>
+              {{ gargs.new_user_msg }}
+              </span>
+           </div>
+           {% endif %}
+           <div class="row">
+              <div class="col-md-5">
+                 <div class="form-group">
+                    <label for="id_email" class="bmd-label-floating">{{ form.email.label}}</label>
+                    {% render_field form.email class="form-control" type="email" %}
+                 </div>
+              </div>
+           </div>
+           <div class="row">
+              <div class="col-md-4">
+                 <div class="form-group">
+                    <label for="id_first_name" class="bmd-label-floating">{{ form.first_name.label}}</label>
+                    {% render_field form.first_name class="form-control" type="text" %}
+                 </div>
+              </div>
+              <div class="col-md-4">
+                 <div class="form-group">
+                    <label for="id_last_name" class="bmd-label-floating">{{ form.last_name.label}}</label>
+                    {% render_field form.last_name class="form-control" type="text" %}
+                 </div>
+              </div>
+              <div class="col-md-4">
+                 <div class="form-group">
+                    <label for="id_phone_no" class="bmd-label-floating">{{ form.phone_no.label}}</label>
+                    {% render_field form.phone_no class="form-control" type="text" %}
+                 </div>
+              </div>
+           </div>
+           <a href="{% url 'accounts:change_password' %}" class="btn btn-facebook btn-fill">Schimba parola</a>
+           <button type="submit" class="btn btn-rose pull-right" name="_update_profile">{{ gargs.submit_action }}</button>
+           <div class="clearfix"></div>
+        </div>
+     </div>
+  </form>
+</div>

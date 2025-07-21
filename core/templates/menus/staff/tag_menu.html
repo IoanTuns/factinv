@@ -1,0 +1,30 @@
+<li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#id_tag_menu" >
+        <i class="material-icons">local_offer</i>
+        <p>Manager TAG
+          <b class="caret"></b>
+        </p>
+      </a>
+      <div class="collapse" id="id_tag_menu">
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="{% url 'tag_manager:tag_create' %}" class="nav-link">
+                <span class="sidebar-mini"> <i class="material-icons">create</i> </span>
+                <span class="sidebar-normal">Generare TAG-uri</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'tag_manager:tag_print_list' %}" class="nav-link">
+                <span class="sidebar-mini"> <i class="material-icons">list</i> </span>
+                <span class="sidebar-normal">TAG-uri Generate</span>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <span class="sidebar-mini"> <i class="material-icons">format_list_numbered</i> </span>
+                  <span class="sidebar-normal" >TAGuri disponibile</span>
+                </a>
+              </li>
+          </ul>
+      </div>
+ </li>

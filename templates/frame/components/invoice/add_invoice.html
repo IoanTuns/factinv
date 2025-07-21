@@ -1,0 +1,150 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<section class="section">
+  <!-- First row -->
+  <div class="row">
+    <!-- Second column -->
+    <div class="col-lg-10 mb-4">
+
+      <!-- Card -->
+      <div class="card card-cascade narrower">
+
+        <!-- Card image -->
+        <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+          <h5 class="mb-0 font-weight-bold">Factura noua</h5>
+        </div>
+        <!-- Card image -->
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+{% if not object %}
+  <form role="form" class="form-horizontal" action="{% url 'invoice:add' %}" method="post" enctype="multipart/form-data">
+{% else %}
+  <form role="form" class="form-horizontal" action="{% url 'invoice:update' object.slug %}" method="post" enctype="multipart/form-data">
+{% endif %}
+  {% csrf_token %}
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        {% if form.series_rel %}
+          <label for="{{ form.series_rel.id_for_label }}"> {{ form.series_rel.label }}</label>
+          {% render_field form.series_rel class="form-control" %}
+          {% for error in form.series_rel.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        {% else %}
+          <label for="{{ form.series.id_for_label }}"> {{ form.series.label}} si {{form.number.label}}</label>
+          <div class="col" style="inline-block;">
+            {{form.series.value}}
+            {{form.number.value}}
+          </div>
+          {% for error in form.series.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        {% endif%}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="{{ form.customer_name.id_for_label }}"> {{ form.customer_name.label }}</label>
+        {% render_field form.customer_name class="form-control" %}
+        {% for error in form.customer_name.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="{{ form.status.id_for_label }}"> {{ form.status.label }}</label>
+        {% render_field form.status class="form-control" %}
+        {% for error in form.status.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.date_issue.id_for_label }}"> {{ form.date_issue.label }}</label>
+        {% render_field form.date_issue class="form-control datepicker" %}
+        {% for error in form.date_issue.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ field.date_due.id_for_label }}" class="active"> {{ form.date_due.label }}</label>
+        {% render_field form.date_due class="form-control datepicker" %}
+        {% for error in field.date_due.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+      <div class="col">
+        <div class="form-group md-form">
+          <label for="{{ field.related_document.id_for_label }}" class="active"> {{ form.related_document.label }}</label>
+          {% render_field form.related_document class="form-control" %}
+          {% for error in field.related_document.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="{{ field.delivery_method.id_for_label }}" class="active"> {{ form.delivery_method.label }}</label>
+          {% render_field form.delivery_method class="form-control" %}
+          {% for error in field.delivery_method.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+  {% comment %} Formset {% endcomment %}
+  {{ Items }}
+  <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="{{ field.total.id_for_label }}" class="active"> {{ form.total.label }}</label>
+          {% render_field form.total class="form-control" %}
+          {% for error in field.total.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="{{ field.vat.id_for_label }}" class="active"> {{ form.vat.label }}</label>
+          {% render_field form.vat class="form-control" %}
+          {% for error in field.total.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">
+      <span class="glyphicon glyphicon-ok"></span> Save
+    </button>
+    <a href="{% url 'invoice:list' %}" class="btn btn-default">Cancel</a>
+  </div>
+</form>
+</div>
+<!-- Card content -->
+
+</div>
+<!-- Card -->
+
+</div>
+<!-- Second column -->
+
+</div>
+<!-- First row -->
+
+</section>
+<!-- Section: Edit Account --> 

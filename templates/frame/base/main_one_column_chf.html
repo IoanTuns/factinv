@@ -1,0 +1,19 @@
+{% extends "./main_one_column_with_footer.html" %}
+{% block meta %} {{ block.super }} {% endblock meta %}
+{% block title %} {{ block.super }} {% endblock title %}
+{% block cdn %} {{ block.super }}  {% endblock cdn %}
+{% block static %} {{ block.super }} {% endblock static %}
+{% block style %} {{ block.super }} {% endblock style %}
+{% block bodyclass %} {{ block.super }}  {% endblock %}
+{% block content %}
+{% block main %}<main class="{% spaceless %}{% block mainclass %}{% endblock mainclass %}{% endspaceless %}">{{ block.super }}
+		<div class="container s_container">
+        {% include 'frame/components/header/logo_centrat.html' %}
+        <div class="row d-flex justify-content-center align-items-center my-2">
+			{% block main_content %} {% endblock main_content %}
+		</div>
+    </div>
+		</main>{% endblock main %}      
+	{% block footer %}{{ block.super }}{% endblock footer %}      
+{% endblock content %}
+{% block script %}{{ block.super }}{% endblock script %}

@@ -1,0 +1,227 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<section class="section">
+  <!-- First row -->
+  <div class="row">
+    <!-- Second column -->
+    <div class="col-lg-10 mb-4">
+
+      <!-- Card -->
+      <div class="card card-cascade narrower">
+
+        <!-- Card image -->
+        <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+          <h5 class="mb-0 font-weight-bold">Înregistrare companie</h5>
+        </div>
+        <!-- Card image -->
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+{% if not object %}
+  <form role="form" class="form-horizontal" action="{% url 'company:add' %}" method="post" enctype="multipart/form-data">
+{% else %}
+  <form role="form" class="form-horizontal" action="{% url 'company:update' object.slug %}" method="post" enctype="multipart/form-data">
+{% endif %}
+  {% csrf_token %}
+
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+  
+  <div class="row">
+    <div class="col">
+      <div class="form-group md-form">
+          <label for="{{ form.cui.id_for_label }}"> {{ form.cui.label }}</label>
+          {% render_field form.cui class="form-control" %}
+          {% for error in form.cui.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.nrRegCom.id_for_label }}"> {{ form.nrRegCom.label }}</label>
+        {% render_field form.nrRegCom class="form-control" %}
+        {% for error in form.nrRegCom.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.denumire.id_for_label }}"> {{ form.denumire.label }}</label>
+        {% render_field form.denumire class="form-control" %}
+        {% for error in form.denumire.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.judet.id_for_label }}"> {{ form.judet.label }}</label>
+        {% render_field form.judet class="form-control" %}
+        {% for error in form.judet.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ field.oras.id_for_label }}" class="active"> {{ form.oras.label }}</label>
+        {% render_field form.oras class="form-control" %}
+        {% for error in field.oras.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+      <div class="col">
+        <div class="form-group md-form">
+          <label for="{{ field.strada.id_for_label }}" class="active"> {{ form.strada.label }}</label>
+          {% render_field form.strada class="form-control" %}
+          {% for error in field.strada.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group md-form">
+          <label for="{{ field.nr.id_for_label }}" class="active"> {{ form.nr.label }}</label>
+          {% render_field form.nr class="form-control" %}
+          {% for error in field.nr.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group md-form">
+          <label for="{{ field.bloc.id_for_label }}" class="active"> {{ form.bloc.label }}</label>
+          {% render_field form.bloc class="form-control" %}
+          {% for error in field.bloc.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group md-form">
+          <label for="{{ field.ap.id_for_label }}" class="active"> {{ form.ap.label }}</label>
+          {% render_field form.ap class="form-control" %}
+          {% for error in field.ap.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group md-form">
+          <label for="{{ field.etaj.id_for_label }}" class="active"> {{ form.etaj.label }}</label>
+          {% render_field form.etaj class="form-control" %}
+          {% for error in field.etaj.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group md-form">
+          <label for="{{ form.codPostal.id_for_label }}"> {{ form.codPostal.label }}</label>
+          {% render_field form.codPostal class="form-control" %}
+          {% for error in form.codPostal.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.fax.id_for_label }}"> {{ form.fax.label }}</label>
+        {% render_field form.fax class="form-control" %}
+        {% for error in form.fax.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.telefon.id_for_label }}"> {{ form.telefon.label }}</label>
+        {% render_field form.telefon class="form-control" %}
+        {% for error in form.telefon.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <h3>Detalii TVA</h3>
+    <div class="row">
+      <div class="col">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{ form.scopTVA.value }}" id="{{ form.scopTVA.id_for_label }}">
+          <label class="form-check-label" for="{{ form.scopTVA.id_for_label }}">
+            {{ form.scopTVA.label }}
+          </label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{ form.statusTvaIncasare.value }}" id="{{ form.statusTvaIncasare.id_for_label }}">
+          <label class="form-check-label" for="{{ form.statusTvaIncasare.id_for_label }}">
+            {{ form.statusTvaIncasare.label }}
+          </label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{ form.statusSplitTVA.value }}" id="{{ form.statusSplitTVA.id_for_label }}">
+          <label class="form-check-label" for="{{ form.statusSplitTVA.id_for_label }}">
+            {{ form.statusSplitTVA.label }}
+          </label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="{{ form.cotaTVA.id_for_label }}"> {{ form.cotaTVA.label }}</label>
+          {% render_field form.cotaTVA class="form-control" %}
+          {% for error in form.cotaTVA.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+  <h3>Detalii bancare</h3>
+  <div class="row">
+    <div class="col">
+      <div class="form-group md-form">
+          <label for="{{ form.iban.id_for_label }}"> {{ form.iban.label }}</label>
+          {% render_field form.iban class="form-control" %}
+          {% for error in form.iban.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group md-form">
+        <label for="{{ form.banca.id_for_label }}"> {{ form.banca.label }}</label>
+        {% render_field form.banca class="form-control" %}
+        {% for error in form.banca.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">
+      <span class="glyphicon glyphicon-ok"></span> Salvează
+    </button>
+    <a href="{% url 'core:home' %}" class="btn btn-default">Anulează</a>
+  </div>
+</form>
+</div>
+<!-- Card content -->
+</div>
+<!-- Card -->
+</div>
+<!-- Second column -->
+</div>
+<!-- First row -->
+</section>
+<!-- Section: Edit Account --> 

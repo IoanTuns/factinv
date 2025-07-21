@@ -1,0 +1,23 @@
+{% load i18n %} 
+<li class="nav-item">
+       <a class="nav-link"  data-toggle="collapse" href="#id_cumparatori">
+         <i class="fas fa-user-tie"></i>
+         <p>Cumparatori <b class="caret"></b> </p>
+       </a>
+       <div class="collapse" id="id_cumparatori">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'buyer:buyer_registered' %}">
+                <i class="fas fa-user-tie text-success"></i>
+                <p>Nou</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'buyer:buyer_list' %}" class="nav-link">
+                <span class="sidebar-mini"> <i class="fas fa-list-alt"></i> </span>
+                <span class="sidebar-normal">Lista Cumparatori</span>
+              </a>
+            </li>
+          </ul>
+      </div>
+     </li>

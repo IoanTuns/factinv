@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block body %}
+
+    {% include 'display_errors.html' %} {# add error and messages display ... #}
+
+    <div class="container">
+        <div class="row">
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-signup">
+              <h2 class="card-title text-center">Creare cont</h2>
+              <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-5 ml-auto">
+                    </div>
+                  <div class="col-lg-12 ">
+                    {% comment %} <div class="social text-center">
+                      <button class="btn btn-just-icon btn-round btn-twitter">
+                        <i class="fa fa-twitter"></i>
+                      </button>
+                      <button class="btn btn-just-icon btn-round btn-dribbble">
+                        <i class="fa fa-dribbble"></i>
+                      </button>
+                      <button class="btn btn-just-icon btn-round btn-facebook">
+                        <i class="fa fa-facebook"> </i>
+                      </button>
+                      <h4 class="mt-3"> or be classical </h4>
+                    </div> {% endcomment %}
+
+                      <div class="container h-100 d-flax justify-content-end p-3">
+                        <div class="my-auto">
+                             {% include 'accounts/reg_form.html' %}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

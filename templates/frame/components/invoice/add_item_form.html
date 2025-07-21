@@ -1,0 +1,20 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<section class="section">
+  
+  {{ Items }}
+  <div class="row">
+    
+      {% comment %} {{ inlines}}
+      {{ item_set.quantity}}
+      {{ inlines.forms}}
+      {{ inlines.forms.formsets.item.title}}
+      {{ inlines.formsets}} {% endcomment %}
+      <div class="col sm">
+        <div class="form-group">
+      {% for formset in inlines %}
+            {{ formset }}
+    {% endfor %}
+  </div>
+</div>
+  </div>

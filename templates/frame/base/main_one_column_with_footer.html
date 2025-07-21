@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+{% block meta %} {{ block.super }} {% endblock meta %}
+{% block title %} {{ block.super }} {% endblock title %}
+{% block cdn %} {{ block.super }}  {% endblock cdn %}
+{% block static %} {{ block.super }} {% endblock static %}
+{% block style %} {{ block.super }} {% endblock style %}
+{% block bodyclass %} {{ block.super }}  {% endblock %}
+{% block content %}
+{% block main %}<main class="{% spaceless %}{% block mainclass %}{% endblock mainclass %}{% endspaceless %}">
+		</main>{% endblock main %}      
+	{% block footer %}<footer class="{% spaceless %}{% block footerclass %}{% endblock footerclass %}{% endspaceless %}">
+	{% include '../components/footer/s_footer.html' %}{% block footer_content %} {% endblock footer_content %}
+	</footer>
+	{% endblock footer %}      
+{% endblock content %}
+{% block script %}{{ block.super }}{% endblock script %}

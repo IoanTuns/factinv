@@ -1,0 +1,52 @@
+{% load i18n %} 
+{% load widget_tweaks %} 
+{% load my_company_filters %}
+<!-- Dashboard left menu -->
+<ul class="collapsible collapsible-accordion">
+    <li> <a href="{% url 'core:dash' %}" class="collapsible-header waves-effect"><i class="fas fa-tachometer-alt"></i> Dashboards</a>
+    </li>
+    <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user"></i> Clienti<i class="fas fa-angle-down rotate-icon"></i></a>
+      <div class="collapsible-body">
+        <ul>
+          <li><a href="{% url 'customer:list' %}" class="waves-effect">Lista</a>
+          </li>
+          <li><a href="{% url 'customer:add' %}" class="waves-effect">Adauga</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li><a class="collapsible-header waves-effect arrow-r"><i class="material-icons">receipt_long</i>Facturi<i
+          class="fas fa-angle-down rotate-icon"></i></a>
+      <div class="collapsible-body">
+        <ul>
+          {% comment %} <li>
+            {%get_current_company%}
+          <li><a href="{% url 'company:update' slug=get_current_company %}" class="waves-effect">General</a>
+          </li> {% endcomment %}
+          <li><a href="{% url 'invoice:list' %}" class="waves-effect">Facturi emise</a>
+          </li>
+          <li><a href="{% url 'invoice:add' %}" class="waves-effect">Adauga</a>
+          </li>
+          {% comment %} <li><a href="../forms/extended.html" class="waves-effect">Facturi</a> {% endcomment %}
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li><a class="collapsible-header waves-effect arrow-r"><i class="material-icons">settings</i> Setari<i
+      class="fas fa-angle-down rotate-icon"></i></a>
+  <div class="collapsible-body">
+    <ul>
+      {% comment %} <li>
+        {%get_current_company%}
+      <li><a href="{% url 'company:update' slug=get_current_company %}" class="waves-effect">General</a>
+      </li> {% endcomment %}
+      <li><a href="{% url 'company:list' %}" class="waves-effect">Firmele mele</a>
+      </li>
+      <li><a href="{% url 'customer:list' %}" class="waves-effect">Cienti</a>
+      </li>
+      <li><a href="{% url 'invoice:doc_list' %}" class="waves-effect">Serii Documente</a>
+      </li>
+    </ul>
+  </div>
+</li>
+  </ul>

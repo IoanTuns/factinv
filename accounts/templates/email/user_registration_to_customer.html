@@ -1,0 +1,15 @@
+{% load i18n %}{% autoescape off %}
+{% blocktrans %} Multumim pentru utilizarea serviciilor {{ site_name }}.{% endblocktrans %}
+
+{% trans "Contul dumneavoastra a fost activat." %}
+{% trans "Adresa de email folosita este: "  %} {{ user.get_email }}
+
+<div>
+    Primul pas este inregistrarea TAGului dumneavoastra in sectiunea inregistrare TAG
+</div>
+
+{% trans "Multumim!" %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+
+{% endautoescape %}

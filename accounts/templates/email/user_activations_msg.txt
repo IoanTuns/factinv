@@ -1,0 +1,6 @@
+{% autoescape off %}
+Bună {{ username }},
+Contul tău a fost creat cu succes. 
+Pentru activarea contului acceseaza linuk-ul urmator
+{{ activate_url }}
+{% endautoescape %}

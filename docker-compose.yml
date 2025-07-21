@@ -1,0 +1,34 @@
+version: "3.11"
+   
+services:
+  db:
+    image: postgres:14.3-alpine3.16
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - DB_HOST=db
+      - DB_NAME=factinv
+      - DB_USER=factinv_db_usr
+      - DB_PASS=factinv
+      - POSTGRES_PASSWORD=pg_dev_pass
+  app:
+    build: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/factinv_app
+      - ./data/web:/vol/web
+    ports:
+      - 8000:80
+    environment:
+      - SECRET_KEY=devsecretkey
+      - DEBUG=1
+      - POSTGRES_NAME=factinv
+      - POSTGRES_USER=factinv_db_usr
+      - POSTGRES_PASSWORD=factinv
+    depends_on:
+      - db
+    image: factinv:factinv_app
+    container_name: factinv_container

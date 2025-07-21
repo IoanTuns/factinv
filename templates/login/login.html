@@ -1,0 +1,13 @@
+{% extends "frame/base/main_one_column_chf.html" %}
+{% block meta %} {{ block.super }} {% endblock meta %}
+{% block title %} {{ block.super }} {% endblock title %}
+{% block cdn %} {{ block.super }}  {% endblock cdn %}
+{% block static %} {{ block.super }} {% endblock static %}
+{% block style %} {{ block.super }} {% endblock style %}
+{% block bodyclass %} {{ block.super }}  {% endblock %}
+{% comment %} {% block content %} {% endcomment %}
+{% block mainclass %}{{ block.super }}{% endblock mainclass %}
+{% block main_content %}
+{% include 'frame/components/main/login.html' %}
+{% endblock main_content %}
+{% block script %}{{ block.super }}{% endblock script %}

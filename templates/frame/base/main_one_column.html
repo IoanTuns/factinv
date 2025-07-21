@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block meta %} {{ block.super }} {% endblock meta %}
+{% block title %} {{ block.super }} {% endblock title %}
+{% block cdn %} {{ block.super }}  {% endblock cdn %}
+{% block static %} {{ block.super }} {% endblock static %}
+{% block style %} {{ block.super }} {% endblock style %}
+{% block bodyclass %} {{ block.super }}  {% endblock %}
+	{% block content %}
+		{% spaceless %}
+			{% block header %}
+				<header class=" {% spaceless %} {% block headerclass %}{% endblock headerclass %} {% endspaceless %} ">
+					{% block header_content %} {% endblock header_content %}
+				</header>
+			{% endblock header %}      
+			{% block main %}
+				<main class=" {% spaceless %} {% block mainclass %}{% endblock mainclass %} {% endspaceless %} ">
+					{% block main_content %} {% endblock main_content %}
+				</main>
+			{% endblock main %}      
+			{% block footer %}
+				<footer class=" {% spaceless %} {% block footerclass %}{% endblock footerclass %} {% endspaceless %} ">
+				
+					{% block footer_content %} {% endblock footer_content %}
+				</footer>
+			{% endblock footer %}      
+		{% endspaceless %} 
+	{% endblock content %}
+{% block script %} {{ block.super }} {% endblock script %}

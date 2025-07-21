@@ -1,0 +1,53 @@
+{% load i18n static js_msg js %} 
+<!DOCTYPE html>
+<html lang="ro-ro" }}>
+<head>
+{% block meta %}{% include './main_meta.html' %}{% block extrameta %} {% endblock extrameta %}{% endblock meta %}{% block title %}{% endblock title %}
+{% block cdn %}{% include './main_cdn.html' %}{% block extracdn %} {% endblock extracdn %}{% endblock cdn %}
+{% block static %}{% include './main_static.html' %}{% block extrastatic %} {% endblock extrastatic %}{% endblock static %}{% block style %} {% endblock style %}
+</head>
+<body class="{% spaceless %}{% if is_popup %} popup {% endif %}{% block bodyclass %}{% endblock %}{% endspaceless %}">
+        {% block message %}
+        {% if messages or form.errors %}
+          {% include './message.html' %}
+        {% endif %}
+      {% endblock message %}
+      {% if not is_popup %}
+      {% block content %}       {% endblock content %}
+{{ messages | js_msg }}
+{{ form.errors | js }}
+{% block script %}{% include './main_body_scripts.html' %}
+<script type="text/javascript" src="{% static "global/other/js/toastr.js" %}"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js">
+    new WOW().init();
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+  var msg_list = {{ messages | js_msg }},
+   err_list = {{ form.errors | js }};
+  $('.toast').toast('show');
+  if(msg_list.length != 0 || err_list.length != 0 ){
+    for (var i = 0; i < msg_list.length; i++){
+        var msg = msg_list[i];
+        var level = msg.level;
+        toastr[(level)](msg.message);
+      }
+  }
+  // SideNav Initialization
+$(".button-collapse").sideNav();
+
+var container = document.querySelector('.custom-scrollbar');
+var ps = new PerfectScrollbar(container, {
+  wheelSpeed: 2,
+  wheelPropagation: true,
+  minScrollbarLength: 20
+});
+
+// Data Picker Initialization
+$('.datepicker').pickadate();
+});
+
+</script>
+{% block extrascript %} {% endblock extrascript %}{% endblock script %}{% elif is_popup %}{% endif %}
+</body>
+</html>

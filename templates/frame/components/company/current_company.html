@@ -1,0 +1,28 @@
+<ul class="nav navbar-nav nav-flex-icons">
+  {% if active_company%}
+    <li class="nav-item dropdown notifications-nav">
+      
+        <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{ active_company}}
+        </a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+        {% for company in companies %}
+          <a class="dropdown-item" href="{% url 'company:list' %}">
+            <i class="fas fa-money mr-2" aria-hidden="true"></i>
+            <span>{{company}}</span>
+            {% comment %} <span class="float-right"><i class="far  fa-clock" aria-hidden="true"></i></span> {% endcomment %}
+          </a>
+          {% endfor %} 
+          <a class="dropdown-item" href="{% url 'company:add' %}">
+            <i class="material-icons">add_circle</i>
+            <span>Adauga companie din conditie</span>
+          </a>
+        </div>     
+    </li>    
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link waves-effect" href="{% url 'company:add' %}"><i class="material-icons">add_circle</i> <span class="clearfix d-none d-sm-inline-block">Adauga companie</span></a>
+    </li>
+  {% endif %}
+  </ul>

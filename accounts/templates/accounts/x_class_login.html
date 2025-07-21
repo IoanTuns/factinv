@@ -1,0 +1,63 @@
+{% extends 'form_base.html' %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>{{ title }}</title>
+    {% endblock %}
+</head>
+<body>
+    {% block page_title %} 
+        {{ gargs.title }}
+    {% endblock page_title %}
+    
+	{% block body %}
+		<div class="col">
+				{% include 'display_errors.html' %} {# add error and messages display ... #}
+				<div class="card">
+					<div class="card-header card-header-primary">
+							<h4 class="card-title">
+									{{ gargs.card_title }}
+							</h4>
+							<p class="card-category">
+									{{ gargs.card_description }}
+							</p>
+					</div>
+					<div class="card-body">
+					<form method="POST" class=' ' action='.' > 
+						{% csrf_token %}
+						{{ login_form|crispy }}
+						<button type="submit" class='btn btn-primary pull-right' id='id_log_in'>
+								{{ gargs.submit_autentificare }}
+						</button>
+					</form> 
+				</div>
+			</div>
+        </div>  
+        <div class="col">
+				{% include 'display_errors.html' %} {# add error and messages display ... #}
+				<div class="card">
+					<div class="card-header card-header-primary">
+							<h4 class="card-title">
+									{{ gargs.card_title }}
+							</h4>
+							<p class="card-category">
+									{{ gargs.card_description }}
+							</p>
+					</div>
+					<div class="card-body">
+					<form method="POST" class=' ' action='.' > 
+						{% csrf_token %}
+						{{ new_user_form|crispy }}
+						<button type="submit" class='btn btn-primary pull-right' id='id_add_new'>
+								{{ gargs.submit_new_user }}
+						</button>
+					</form> 
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+</body>
+</html>

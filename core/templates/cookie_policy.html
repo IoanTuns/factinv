@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>{{ title }}</title>
+    {% endblock %}
+</head>
+<body>
+    {% block page_title %}
+        {{ gargs.title }}
+    {% endblock page_title %}
+    
+    {% block body %}
+    <div class="col-md-10 ml-auto mr-auto ">
+        <div class="my-auto">
+            <script id="CookieDeclaration" src="https://consent.cookiebot.com/567bc5f8-140d-4ff8-ae45-ce580cb60b8d/cd.js" type="text/javascript" async></script>
+        </div>
+    </div>  
+	{% endblock %}
+</body>
+</html>

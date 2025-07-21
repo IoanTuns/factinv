@@ -1,0 +1,54 @@
+{% extends "frame/base/main_one_column_chf.html" %}
+{% load i18n static %} 
+{% block meta %} {{ block.super }} {% endblock meta %}
+{% block title %} {{ block.super }} {% endblock title %}
+{% block cdn %} {{ block.super }}  {% endblock cdn %}
+{% block static %} {{ block.super }} {% endblock static %}
+{% block style %} {{ block.super }} 
+<style>
+.tooltip-inner {
+    max-width: 350px;
+}
+</style>
+{% endblock style %}
+{% block bodyclass %} {{ block.super }}  {% endblock %}
+{% comment %} {% block content %} {% endcomment %}
+{% block mainclass %}{% endblock mainclass %}
+{% block main_content %}
+{% include 'frame/components/main/register.html' %}
+{% endblock main_content %}
+	
+{% block script %}{{ block.super }}
+<script>
+$(document).ready(function() {
+    $('input').each(function (i, e) {
+        var label;
+        switch ($(e).attr("id")) {
+            case "id_password1":
+                $(e).tooltip({ 
+                    placement: "top",
+                    trigger: "focus",
+                    html: true,
+                    title: '{% include 'frame/components/messages/tooltip_password1.html' %}',
+                    template: '{% include 'frame/components/tooltip/tooltip_password1.html' %}'
+                });
+        }
+    });
+
+
+    var password = document.getElementById("id_password1")
+  , confirm_password = document.getElementById("id_password2");
+
+    function validatePassword(){
+    if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity('Parolele nu sunt identice!');
+        } else {
+                confirm_password.setCustomValidity('');
+            }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+});
+
+</script>
+{% endblock script %}

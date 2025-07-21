@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+        <div class="container">
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="navbar-wrapper logo_wrapp_left">
+              {% include 'logo.html' %}
+            </div>
+          <button class="navbar-toggler fp_navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle top navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="{% url 'finder:amgasit' %}" class="nav-link">
+                  <i class="material-icons">gps_fixed</i>  
+                  Am găsit
+                </a>
+              </li>
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="{% url 'accounts:login' %}" class="nav-link">
+                  <i class="material-icons">person</i> Contul meu
+                </a>
+              </li>
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="{% url 'accounts:signup' %}" class="nav-link">
+                  <i class="material-icons">person_add</i> Register
+                </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="tel:0040362100200" style="text-decoration: none; color: #ffffff;" title="tel:0040362100200" class="nav-link" >
+                  <i class="material-icons">local_phone</i> 
+                  0362 100 200
+                </a>
+              </li>
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="mailto:contact@amtag.ro?subject=Contact&nbspamTAG&amp;body=Bună&nbspziua," style="text-decoration: none; color: #ffffff;" title="contact@amtag.ro" class="nav-link" >
+                  <i class="material-icons">email</i> 
+                  contact@amtag.ro
+                </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="https://www.amtag.ro/#cum_functioneaza" style="text-decoration: none; color: #ffffff;" class="nav-link" title="Cum funcționează">Cum funcționează</a>
+              </li>
+              <li class="nav-item d-lg-none d-xl-none">
+                <a href="{% url 'general:cookie' %}" style="text-decoration: none; color: #ffffff;" class="nav-link" title="Cookie-uri">Cookie-uri</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </nav>

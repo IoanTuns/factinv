@@ -1,0 +1,82 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+    {% block head %}
+        <title>Autentificare</title>
+    {% endblock head %}
+<body>
+    {% block menu %}
+        <!-- Navbar -->
+        {% include 'menus/non_login/non_login_user_menues_mobile_only.html' %}
+    {% endblock menu%}
+    {% block body %}
+    <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+    <div> 
+    <div class="navbar-wrapper logo_wrapp_center">
+        {% load static %}
+        <a class="navbar-brand" href="https://www.amtag.ro/">
+            <img src="{% static 'global/img/logo_alb.png' %}" class="logo-lgp" alt="amTAG" />
+        </a>
+          </div>
+        {% include 'display_errors.html' %} {# add error and messages display ... #}
+        <form method="POST" action="{% url 'accounts:login' %}"> 
+            {% csrf_token %}
+            {% if request.GET.next %}
+                <!-- <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p> -->
+                <input type="hidden" name="next" value="{{ request.GET.next }}" />
+            {% endif %}
+            <div class="group_login"> 
+            <div class="card card-login">
+                <div class="card-body box-login">
+                    {% if msg_reactivate %}
+                    <div class="alert alert-warning" role="alert">
+                            {{ msg_reactivate }}
+                    </div>
+                    {% endif %}
+                    <div class="bdtn-group">
+                    <span class="bmd-form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">email</i>
+                                </span>
+                            </div>
+                            {% render_field form.query class="form-control" type="email" placeholder="Email..."%}
+                        </div>
+
+                    </span>
+                    <span class="bmd-form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </div>
+                                {% render_field form.password class="form-control" type="password" placeholder="Parola..."%}
+                            </div>
+    
+                        </span>
+                        </div>
+                </div>
+            </div>
+                                <button class=" card-footer justify-content-center btn btn-blue btn-lg btn-login full-width" type="submit">
+                        Vezi contul
+                    </button>
+                    </div>
+        </form>
+
+        {% if form.errors %} {# if form errors add extra details for login page ... #}
+            {# display aditional text if any errors #}
+                <div class="text-center">
+                    <a href="{% url 'accounts:reset_password' %}" class="alert-rose">Ai uitat parola?</a>
+                </div>
+        {% endif %} {# end if form errors #}
+        <div class="text-center">
+                <a href="{% url 'accounts:signup' %}" class="btn btn-rose btn-fill">Creare cont</a>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

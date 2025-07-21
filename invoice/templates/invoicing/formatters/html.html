@@ -1,0 +1,211 @@
+{% load i18n invoicing %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel-title">
+            <h2 class="panel-title">{% trans 'FACTURĂ' %}</h2>
+        </div>
+    </div>
+    <div class="col-md-2">
+                <h4 class="panel-title">{% trans 'Nr si seria' %}:</h4>
+    </div>
+    <div class="col-md-3">
+        {{ invoice.series }} {{ invoice.number }}
+</div>
+</div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{% trans 'Furnizor' %}</h3>
+                </div>
+                <div class="panel-body mb-4"> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>{% trans 'Denumire' %}:</strong> {{ invoice.supplier.denumire }}<br>
+                            <strong>{% trans 'Nr. Reg. Nr.' %}:</strong> {{ invoice.supplier.nrRegCom }}<br>
+                            <strong>{% trans 'CUI.' %}:</strong> {{ invoice.supplier.cui }}<br>
+                            <strong>{% trans 'Adresa' %}:</strong>{{ invoice.supplier.oras }}, {{ invoice.supplier.strada }}<br>
+                            <strong>{% trans 'Judetul' %}:</strong>{{ invoice.supplier.oras }}, {{ invoice.supplier.strada }}<br>
+                        </div>
+                    </div>
+                    <br>
+                    <i>{% trans 'Banca' %}:</i><br>
+                    <strong>{% trans 'Title' %}:</strong> {{ invoice.supplier.banca }}<br>
+                    <strong>{% trans 'Bank IBAN code' %}:</strong> {{ invoice.supplier.iban }}<br>
+                    <br>
+                    <i>{% trans 'Emis de' %}:</i><br>
+                    {% if invoice.issuer_name %}
+                        <strong>{% trans 'Name' %}:</strong> {{ invoice.issuer_name|default:'' }}<br>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{% trans 'Cumparator:' %}</h3>
+                </div>
+                <div class="panel-body mb-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ invoice.customer_name }}<br>
+                            {{ invoice.customer_street|default:'' }}<br>
+                            {{ invoice.customer_zip|default:'' }} {{ invoice.customer_city|default:'' }}<br>
+                            {{ invoice.get_customer_country_display|default:'' }}<br>
+                        </div>
+                        <div class="col-md-6">
+                            {% if invoice.customer_registration_id %}<strong>{% trans 'Nr. Reg. Com.' %}:</strong> {{ invoice.customer_registration_id }}<br>{% endif %}
+                            {% if invoice.customer_tax_id %}<strong>{% trans 'CUI.' %}:</strong> {{ invoice.customer_tax_id }}<br>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{% trans 'Data emiteri' %}</h3>
+                        </div>
+                        <div class="panel-body mb-4">
+                            {{ invoice.date_issue }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{% trans 'Scadenta' %}</h3>
+                        </div>
+                        <div class="panel-body mb-4">
+                            {{ invoice.date_due}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-warning">
+                <div class="panel-body mb-4">
+                    {% if invoice.delivery_method %}<strong>{% trans 'Metoda de livrare' %}:</strong> {{ invoice.get_delivery_method_display|default:'' }}<br>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div><!-- ./row -->
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            {% comment %} <h3 class="panel-title">{% trans 'Invoice items' %}</h3> {% endcomment %}
+        </div>
+        <div class="panel-body mb-4">
+            {% if invoice.item_set.exists %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'ID' %}</th>
+                            <th>{% trans 'Descriere' %}</th>
+                            <th class="text-right">{% trans 'Cantitate' %}<br></th>
+                            <th>{% trans 'UM' %}<br></th>
+                            <th class="text-right nowrap">{% trans 'Pret Unitar' %}</th>
+                            {% if invoice.has_discount %}
+                                <th class="text-right nowrap">{% trans 'Reducere' %}</th>
+                            {% endif %}
+                            {% if invoice.vat or invoice.vat == 0 %}
+                                <th class="text-right">{% trans 'Valoare' %}</th>
+                                <th class="text-right nowrap">{% trans 'TVA' %}</th>
+                                <th class="text-right nowrap">{% trans 'Valoare TVA' %}</th>
+                            {% endif %}
+                            <th class="text-right">{% trans 'Total linie' %}
+                                {% if invoice.vat or invoice.vat == 0 %}<br><small>{% trans 'TAV inclus' %}</small>{% endif %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in invoice.item_set.all %}
+                        <tr>
+                            <td class="minimal-width nowrap">
+                                {% if item.get_absolute_url %}
+                                    <a href="{{ item.get_absolute_url }}">{{ forloop.counter }}</a>
+                                {% else %}
+                                    {{ forloop.counter }}
+                                {% endif %}
+                            </td>
+                            <td>{{ item.title|linebreaksbr }}</td>
+                            <td class="minimal-width nowrap text-right">{{ item.quantity|floatformat:"-3" }}</td>
+                            <td class="minimal-width nowrap">{{ item.get_unit_display }}</td>
+                            <td class="minimal-width nowrap text-right">{{ item.unit_price|floatformat:"2" }} {{ invoice.currency }}</td>
+                            {% if invoice.has_discount %}
+                                <td class="minimal-width nowrap text-right">{{ item.discount|default:0 }} %</td>
+                            {% endif %}
+                            {% if invoice.vat or invoice.vat == 0 %}
+                                <td class="minimal-width nowrap text-right">{{ item.subtotal|floatformat:"2" }} {{ invoice.currency }}</td>
+                                <td class="minimal-width nowrap text-right">{% if item.tax_rate or item.tax_rate == 0 %}{{ item.tax_rate|floatformat }}%{% else %}-{% endif %}</td>
+                                <td class="minimal-width nowrap text-right">{{ item.vat|floatformat:"2" }} {{ invoice.currency }}</td>
+                            {% endif %}
+                            <td class="minimal-width nowrap text-right"><strong>{{ item.total|floatformat:"2" }} {{ invoice.currency }}</strong></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                {% trans 'Nu exista produse / servicii pe aceasta factura' %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            {% if invoice.note %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{% trans 'Note' %}:</h4>
+                        {{ invoice.note }}<br><br>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{% trans 'Valoare' %}</h3>
+                            {% if invoice.vat or invoice.vat == 0 %}<small>{% trans 'fara TAV' %}</small>{% endif %}
+                        </div>
+                        <div class="panel-body text-right">
+                            {{ invoice.subtotal|floatformat:"2" }} {{ invoice.currency }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{% trans 'TVA' %}</h3>
+                        </div>
+                        <div class="panel-body text-right">
+                            {% if invoice.vat or invoice.vat == 0 %}
+                                {{ invoice.vat|floatformat:"2" }} {{ invoice.currency }}
+                            {% else %}
+                                {% trans 'Total cu TVA' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{% trans 'Valoare totala' %}</h3>
+                        </div>
+                        <div class="panel-body mb-4">
+                            <!--{{ invoice.total_in_string }}-->
+                            <h1 class="text-right" style="margin:0px">{{ invoice.total|floatformat:"2" }} {{ invoice.currency }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,50 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<section class="section">
+  <!-- First row -->
+  <div class="row">
+    <!-- Second column -->
+    <div class="col-lg-10 mb-4">
+
+      <!-- Card -->
+      <div class="card card-cascade narrower">
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+  <form role="form" class="form-horizontal" action="{% url 'invoice:doc_add' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field|add_class:'form-control' }}
+      {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">
+      <span class="glyphicon glyphicon-ok"></span> Save
+    </button>
+    <a href="{% url 'core:home' %}" class="btn btn-default">Cancel</a>
+  </div>
+</form>
+</div>
+<!-- Card content -->
+
+</div>
+<!-- Card -->
+
+</div>
+<!-- Second column -->
+
+</div>
+<!-- First row -->
+
+</section>
+<!-- Section: Edit Account --> 

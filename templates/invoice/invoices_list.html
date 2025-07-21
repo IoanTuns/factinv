@@ -1,0 +1,48 @@
+{% extends "frame/dashboard/base_d.html" %}
+{% block main%}
+<div class="table-responsive">
+    <table id="dtBasicExample" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+<tr>
+    <th></th>
+    <th>Data</th>
+    <th>Nr si seria</th>
+    <th>Client</th>
+    <th>CUI</th>
+    <th>Active</th>
+    <th></th>
+</tr>
+{% for member in object_list %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td> {{ member.date_issue }}  </td>
+    <td> {{ member.series}} {{ member.number}}</td>
+    <td> {{ member.customer_name.denumire }}</td>
+    <td> {{ member.customer_name.cui }}</td>
+    <td> {{ member.total }}</td>
+    <td> {{ member.status }}</td>
+    <td>
+        <a href="{% url 'invoice:update' member.slug %}"> 
+            <i class="material-icons text-edit" style="color:blue;">edit</i>
+        </a>
+        {% comment %} 
+        <a href="{% url 'company:delete' member.current_company.company.slug %}"> 
+            <i class="material-icons" style="color:red">delete_forever</i>
+        </a>
+        <a href="{% url 'company:activate' member.current_company.company.slug %}"> 
+            <i class="material-icons" style="color:purple">assignment_ind</i>
+        </a>
+        {% endcomment %}
+    </td> 
+</tr>
+
+{% endfor %}
+
+</table>
+{% include 'frame/base/pagination.html' %}
+</div>
+
+{% endblock main%}
+
+{% for member in object_list %}
+{{ member.current_company.company.denumire }}, {{ member.current_company.company.cui }}
+{% endfor %}

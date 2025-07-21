@@ -1,0 +1,29 @@
+
+{% extends "frame/dashboard/base_d.html" %}
+{% load i18n %} 
+{% load widget_tweaks %}
+{% block main%}
+{% if not object %}
+  <form role="form" class="form-horizontal" action="{% url 'customer:add' %}" method="post" enctype="multipart/form-data">
+{% else %}
+  <form role="form" class="form-horizontal" action="{% url 'customer:update' object.id %}" method="post" enctype="multipart/form-data">
+{% endif %}
+  {% csrf_token %}
+
+  {% for field in form.visible_fields %}
+  <option class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field|add_class:'form-control' }}
+      {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </option>
+  {% endfor %}
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">
+      <span class="glyphicon glyphicon-ok"></span> Salveaza
+    </button> 
+    <a href="{% url 'customer:home' %}" class="btn btn-default">Anuleaza</a>
+  </div>
+</form>      
+{% endblock main%}

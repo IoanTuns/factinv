@@ -1,0 +1,46 @@
+{% extends "frame/dashboard/base_d.html" %}
+{% block main%}
+<div class="table-responsive">
+    <div>
+        <a href="{% url 'invoice:doc_add' %}" style="color:purple"> 
+            <i class="material-icons text-edit">add_circle</i> Adauga serie
+        </a>
+    </div>
+    <table id="dtBasicExample" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+<tr>
+    <th></th>
+    <th>Tip document</th>
+    <th>Seria</th>
+    <th>De la</th>
+    <th>Pana la</th>
+    <th>Ultimul nr</th>
+    <th>Activ</th>
+    <th>Editeaza</th>
+</tr>
+{% for member in object_list %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td> {{ member.doc_type }}  </td>
+    <td> {{ member.series}}</td>
+    <td> {{ member.star_value}}</td>
+    <td> {{ member.end_value }}</td>
+    <td> {{ member.last_insert }}</td>
+    <td> {{ member.is_active }}</td>
+    <td>
+        <a href="{% url 'invoice:update' member.slug %}"> 
+            <i class="material-icons text-edit" style="color:blue">edit</i>
+        </a>
+    </td> 
+</tr>
+
+{% endfor %}
+
+</table>
+{% include 'frame/base/pagination.html' %}
+</div>
+
+{% endblock main%}
+
+{% for member in object_list %}
+{{ member.current_company.company.denumire }}, {{ member.current_company.company.cui }}
+{% endfor %}

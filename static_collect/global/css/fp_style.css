@@ -1,0 +1,103 @@
+body { 
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e73c4c+0,ef2e69+100 */
+background: #e73c4c; /* Old browsers */
+background: -moz-linear-gradient(top,  #e73c4c 0%, #ef2e69 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e73c4c 0%,#ef2e69 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e73c4c 0%,#ef2e69 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e73c4c', endColorstr='#ef2e69',GradientType=0 ); /* IE6-9 */
+}
+.wrapper-full-page {
+/* background-image: url('static/global/img/pin_mare.png'); */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 110% 1em; 
+  background-size: 37em;
+}
+
+.off-canvas-sidebar .navbar-collapse::after {
+  background-color: #005DBC;
+}
+  
+.logo{
+  /* height: 50px; */
+  width: 140px;
+}
+
+.logo-lgp{
+  /* height: 50px; */
+  width: 90%;
+  margin: auto;
+}
+  
+.pull-center {
+  display: inline-block;
+  float: none;
+}
+
+.form-check .form-check-input:checked+.form-check-sign:before {
+  animation: none 0 ease 0 1 normal none running;
+}
+
+.form-check .form-check-input:checked+.form-check-sign .check:after {
+  animation: none 0 ease 0 1 normal none running;
+}
+
+.form-check .form-check-input:not(:checked)+.form-check-sign:before {
+  animation: none 0 ease 0 1 normal none running;
+}
+
+.form-check .form-check-input:not(:checked)+.form-check-sign .check:after {
+  animation: none 0 ease 0 1 normal none running;
+}
+
+.group-header {
+  margin-top: -3em;
+}
+
+.fp_card{
+  margin-top: 4em;
+}
+
+.fp_card .card-header .group-header .card-title{
+  color: azure;
+}
+
+.logo_wrapp_left{
+  float: left;
+}
+
+.fp_navbar-toggler{
+  float: right;
+}
+.navbar .navbar-brand{
+  margin-left: 0;
+}
+.navbar .collapse .navbar-nav .nav-item .nav-link{
+  padding: 0;
+}
+.off-canvas-sidebar .navbar .navbar-collapse .navbar-nav .nav-item .nav-link{
+  margin-right: 0;
+}
+/* .off-canvas-sidebar .wrapper-full-page .page-header{
+  padding: 20vh 0 !important;
+} */
+.fp_card_header{
+  width:70px;
+  height:90px;
+  background-color: transparent !important;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: 50%;
+  background-size:75%;
+}
+
+.box-login{
+  width: 100%;
+  /* height: 12em; */
+}
+
+.group_login{
+  width: 100%;
+  height: 12em;
+}
+

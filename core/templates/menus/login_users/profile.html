@@ -1,0 +1,25 @@
+{% if user.is_admin %}
+    <li class="nav-item dropdown">
+    {{ request.get_host }}
+    {{ request.META.HTTP_HOST }}
+    <a href="{{ request.get_host }}"> Admin </a>
+    </li>
+{% endif %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle no-text-transform" href="{% url 'accounts:myaccount' %}" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="material-icons">person</i> 
+        {% now "H" as int(current_time) %}
+        {% if  12 < current_time < 18 %}
+            Bună ziua
+        {% elif current_time < 12 %}
+            Bună dimineața
+        {% else %}
+            Bună seara
+        {% endif %}
+            {{ user.first_name.title }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{% url 'accounts:myaccount' %}"><span class="fa fa-user" ></span> Contul meu </a>
+        <a class="dropdown-item" href="{% url 'accounts:logout' %}"><span class="fa fa-sign-out" ></span> Logout</a>
+    </div>
+</li>

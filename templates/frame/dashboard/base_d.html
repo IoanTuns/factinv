@@ -1,0 +1,55 @@
+{% extends "frame/base/base.html" %}
+{% load i18n static %} 
+{% block extrastatic %} 
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:300,400|Material+Icons" />
+<script src="https://kit.fontawesome.com/c2627fb540.js" crossorigin="anonymous"></script>
+{% endblock extrastatic %}
+{% block style %} {{ block.super }} 
+<style>
+.tooltip-inner {
+    max-width: 350px;
+}
+</style>
+{% endblock style %}
+{% block bodyclass %} fixed-sn white-skin  {% endblock bodyclass%}
+{% comment %} {% block content %} {% endcomment %}
+{% block content %}
+<header>
+    <div id="slide-out" class="side-nav sn-bg-4 fixed">
+        <ul class="custom-scrollbar">
+            <!-- Logo -->
+            <li class="logo-sn waves-effect py-3">
+                {% include 'frame/components/header/logo_centrat.html' %}
+            </li>
+            <!--/. Logo -->
+            <!--Search Form-->
+            <li>
+              <form class="search-form" role="search">
+                <div class="md-form mt-0 waves-light">
+                  <input type="text" class="form-control py-2" placeholder="Search">
+                </div>
+              </form>
+            </li>
+            <!--/.Search Form-->
+            <!-- Side navigation links -->
+            <li>
+                {% include 'frame/dashboard/menu_left.html' %}
+                {% block left_menu %} {% endblock left_menu %}
+            </li>
+            <!--/. Side navigation links -->
+        </ul>
+        <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
+        {% include 'frame/dashboard/menu_top.html' %}
+        {% block nav %} {% endblock nav %}
+    </nav>
+</header>
+<main>
+<div class="container-fluid">
+{% block main%} {% endblock main%}
+</div>
+</main>
+{% endblock content %}
+	
+{% block script %}{{ block.super }}{% endblock script %}

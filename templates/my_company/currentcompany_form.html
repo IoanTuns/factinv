@@ -1,0 +1,26 @@
+
+{% extends "frame/dashboard/base_d.html" %}
+{% load i18n %} 
+{% load widget_tweaks %}
+{% block main%}
+<form role="form" class="form-horizontal"  method="post" enctype="multipart/form-data">
+
+  {% csrf_token %}
+
+  {% for field in form.visible_fields %}
+  <option class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field|add_class:'form-control' }}
+      {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </option>
+  {% endfor %}
+  <div class="form-group">
+    {% comment %} <button type="submit" class="btn btn-success">
+      <span class="glyphicon glyphicon-ok"></span> Save
+    </button> {% endcomment %}
+    <a href="{% url 'core:home' %}" class="btn btn-default">Activeaza</a>
+  </div>
+</form>      
+{% endblock main%}

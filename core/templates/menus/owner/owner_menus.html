@@ -1,0 +1,30 @@
+
+{% if user.is_staff %}
+    
+{% else %}
+<li class="nav-item ">
+    <a class="nav-link" href="{% url 'owner:tag_owner_registered' %}">
+      <i class="material-icons text-info">room</i>
+      <p>Înregistrare TAG</p>
+    </a>
+  </li>
+{% endif %}
+
+  <li class="nav-item ">
+      <a class="nav-link" href="{% url 'owner:tag_owner_lost' %}">
+        <i class="material-icons text-danger">gps_not_fixed</i>
+        <p>Am pierdut</p>
+      </a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link" href="{% url 'owner:tag_owner_recovered' %}">
+          <i class="material-icons text-success">check_circle_outline</i>
+          <p>Am recuperat</p>
+        </a>
+      </li>
+  <li class="nav-item ">
+      <a class="nav-link" href="{% url 'finder:amgasit' %}">
+        <i class="material-icons text-warning">gps_fixed</i>
+        <p>Am găsit</p>
+      </a>
+    </li>

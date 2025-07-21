@@ -1,0 +1,17 @@
+
+{% include 'menus/staff/tag_menu.html' %}
+
+{% include 'menus/staff/buyer_menu.html' %}
+
+<li class="nav-item">
+       <a class="nav-link" href="{% url 'owner:priprietari' %}">
+         <i class="fas fa-user-shield"></i>
+         <p>Proprietari</p>
+       </a>
+     </li>
+<li class="nav-item">
+       <a class="nav-link" href="{% url 'finder:cauta' %}">
+         <i class="fas fa-user-tag"></i>
+         <p>Gasitori</p>
+       </a>
+     </li>

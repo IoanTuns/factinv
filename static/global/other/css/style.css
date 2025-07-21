@@ -1,0 +1,47 @@
+body { 
+	background:#FDFEFE;
+}
+.logo{
+  width: 10em;
+}
+.text-am-blue{
+	color: #005EBD;
+}
+.text-am-red{
+  color: #F23E4D;
+}
+.text-space1 {
+  letter-spacing: 0.1rem;
+}
+.text-space2 {
+  letter-spacing: 0.2rem;
+}
+.text-space3 {
+  letter-spacing: 0.3rem;
+}
+.s_container {
+	min-height:500px;
+}
+.s_footer {
+	max-width: 95vh;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.footer1_link{
+text-align: center;
+}
+@media (max-height: 710px){
+.s_footer {
+position: static;
+}
+}
+.customRound{
+	border-radius: 8px 7px;
+}

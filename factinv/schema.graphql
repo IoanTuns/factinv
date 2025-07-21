@@ -1,0 +1,39 @@
+
+
+scalar EmailAddress
+scalar Error
+
+# Login status
+type AuthUserQuery {
+        isAuthenticated: Boolean!
+    }
+
+#  Login process
+type UserAuthMutation {
+    login(username: EmailAddress!, password: String!): LoginPayload
+    logout: Boolean!
+}
+
+type LoginPayload {
+        status: Boolean!
+        error: Error
+        user: User
+    }
+
+type User {
+    id: String!
+    username: EmailAddress!
+}
+
+# Identificatorul pentru interogare
+type Query{
+    my_companies: [MyCompany]
+}
+
+# Selectarea unui utilizator specific
+type MyCompany {
+    id: ID
+    cui: String!
+    nrRegCom: String!
+    denumire: String!
+}

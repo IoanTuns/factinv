@@ -1,0 +1,25 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<form class="text-center border border-light p-5 white" method="POST" action="{% url 'accounts:auth' %}">{% csrf_token %}
+
+                <p class="h2 mb-4 text-am-blue">Salut,</p>
+				<p class="h6 mb-4 text-am-blue">{{ name }}</p>
+                <p class="mb-1">Introdu parola contului tău</p><div hidden> {% render_field form.email id="defaultLoginFormEmail" class="form-control mb-4"%} </div>
+            	<!-- Password -->
+				{% render_field form.password class="form-control mb-4 customRound border-dark"%}
+			<div>
+						<!-- Remember me -->
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+							<label class="custom-control-label" for="defaultLoginFormRemember">Ține-mă minte</label>
+						</div>
+					</div>
+                <!-- Sign in button -->
+                <button class="btn btn-blue darken-2 btn-block my-4 text-capitalize font-weight-bold text-space1 " type="submit">Continuă</button>
+
+                <div>
+						<!-- Forgot password -->
+						<a href="{% url 'accounts:reset_password' %}" class="text-am-blue" >Ai uitat parola?</a>
+					</div>
+
+            </form>

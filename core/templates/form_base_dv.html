@@ -1,0 +1,37 @@
+{% extends extended_template %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>{{ title }}</title>
+    {% endblock %}
+</head>
+<body>
+    {% block page_title %}
+        {{ gargs.title }}
+    {% endblock page_title %}
+
+    {% block body %}
+    <div class="col-md-10 ml-auto mr-auto ">
+			{% include 'display_errors.html' %} {# add error and messages display ... #}
+
+		<div class="card">
+			{% block card_header %}
+
+			{% endblock card_header %}
+			<div class="card-body">
+				<form method="POST" class=' ' action='.' > 
+					{% csrf_token %}
+					{% for rec in object %}
+					{{ rec|crispy }}
+					{% endfor %}
+					<button type="submit" class='btn btn-primary pull-right' id='id_add_new'>
+					</form>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+</body>
+</html>

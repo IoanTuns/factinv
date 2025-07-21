@@ -1,0 +1,30 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<!-- Content -->
+            <form class="text-center border border-light mt-3 p-5 white customRound" method="POST" action="{% url 'accounts:register' %}">{% csrf_token %}
+            <p class="h4 mb-3 text-am-blue">{% trans 'Bun venit!' %} </p>
+            <p class="mb-2">{{ email }}</p>
+            <p class="mb-2">{% trans 'Hai să creăm contul tău FactInv' %}</p>
+            <div hidden> {% render_field form.email class="form-control mb-2 customRound border-light " %} </div>
+            <!-- Name -->
+            {% comment %} <label for="id_first_name">{% trans 'Nume' %}</label> {% endcomment %}
+            {% render_field form.first_name class="form-control mb-2 customRound border-dark" name="c_name" placeholder="Nume" %}
+            <!-- Name -->
+            {% comment %} <label for="id_last_name">{% trans 'Prenum' %}</label> {% endcomment %}
+            {% render_field form.last_name class="form-control mb-2 customRound border-dark" name="c_name" placeholder="Prenume" %}
+            <!-- Password -->
+            {% comment %} <label for="id_password1">{% trans 'Alege-ți o parolă sigură.' %}</label> {% endcomment %}
+            {% render_field form.password1 class="form-control mb-2 customRound border-dark material-tooltip-main" pattern="^([a-zA-Z0-9@!*#]{8,35})$" placeholder="Alege-ți o parolă sigură" %}
+            {% comment %} <label for="id_password2">{% trans 'Confirmați parola' %}</label> {% endcomment %}
+            {% render_field form.password2 class="form-control mb-2 customRound border-dark material-tooltip-main" pattern="^([a-zA-Z0-9@!*#]{8,35})$" placeholder="Confirmați parola" %}
+            <!-- Newsletter -->
+            <div class="custom-control custom-checkbox">
+                {% render_field form.is_accsept class="custom-control-input" %}
+                <label class="custom-control-label" for="id_is_accsept">{% trans 'Am citit și sunt de acord cu' %}
+                                <a href="" target="_blank">{% trans 'termeni și condiții' %}</a></label>
+            </div>
+            <button class="btn btn-blue darken-2 btn-block my-4 text-capitalize font-weight-bold text-space1 customRound " type="submit">Continuă</button>
+        </form>
+<!-- Default form register -->
+
+        

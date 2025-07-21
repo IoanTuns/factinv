@@ -1,0 +1,23 @@
+{% load i18n %} 
+{% load widget_tweaks %}
+<!-- Content -->
+            <form class="text-center border border-light p-5 white customRound" method="POST" action="{% url 'accounts:email_login' %}">{% csrf_token %}
+                {% if request.GET.next %}
+                    <!-- <p>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p> -->
+                    <input type="hidden" name="next" value="{{ request.GET.next }}" />
+                {% endif %}
+                <p class="h2 mb-4 text-am-blue">{% trans 'Salut!'%}</p>
+                <p>{% trans 'Să-i dăm drumul'%}</p>
+                <p class="mb-4">{% trans 'Adresa ta de email, te rog'%}</p>
+                <!-- Email -->
+                <div class="md-form col-12 ml-auto">
+                    {% render_field form.email class="form-control mb-4 " pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" %}
+                    <label for="{{ form.email.id }}">Email</label>
+                </div>
+                <!-- Sign in button -->
+                <button class="btn btn-blue darken-2 btn-block my-4 text-capitalize font-weight-bold text-space1 customRound" type="submit">Continuă</button>
+                <!-- Register -->
+                <p>{% trans 'Nu ai cont?' %}</p>
+                <p>{% trans 'Facem unul în pasul următor.' %}</p>
+            </form>
